@@ -4,14 +4,18 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -25,12 +29,12 @@ public class GmailSender {
 		WebDriver driver = new ChromeDriver();
 		
 		//Please put you First Gmail address and password 
-		String firstemail = "Gmailaddress";
-		String firstemail1pass ="GmailPassword";
+		String firstemail = "Gmail address";
+		String firstemail1pass ="Password";
 		
 		//Please put you Second Gmail address and password 
-		String secondemail = "Gmailaddress";
-		String secondemailpass ="GmailPassword";
+		String secondemail = "Gmail address";
+		String secondemailpass ="Password";
 		
 		// Calling The function
 		gmaillogin(driver,firstemail,firstemail1pass);
@@ -99,7 +103,7 @@ public class GmailSender {
 				By.xpath("//body/div[26]/div[1]//table[1]//table[1]//table//td[4]/div[1]/div[1]/div[1]/div[1]/div[1]")).click();
 		
 		
-		StringSelection ss = new StringSelection("G:\\fileupload\\file.txt");
+		StringSelection ss = new StringSelection("D:\\fileupload\\file.txt");
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 
 		Robot robot = new Robot();
@@ -150,6 +154,15 @@ public class GmailSender {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		WebElement hover = driver.findElement(By.xpath("//div[@role='listitem']//div[1]/div[2]/div[3]/div[5]/div[4]/span[1]"));
 		action.moveToElement(hover).build().perform();
+		
+		
+//		String downloadFilepath = "D:\\Saved_File";
+//		HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+//		chromePrefs.put("profile.default_content_settings.popups", 0);
+//		chromePrefs.put("download.default_directory", downloadFilepath);
+//		ChromeOptions options = new ChromeOptions();
+//		options.setExperimentalOption("prefs", chromePrefs);
+//		driver = new ChromeDriver(options);
 		
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.findElement(By.xpath("//div[@role='listitem']//div[1]/div[2]/div[3]/div[5]/div[4]/span/div[1]/div[1]")).click();
